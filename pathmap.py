@@ -5,15 +5,16 @@ __author__ = 'Coyote & kttzd'
 import os
 import sys
 from optparse import OptionParser
+from libs.url import Url
 
 
-def main(args):
+def main(argv):
     parser = OptionParser(usage="usage:%prog [optinos] -u url")
     parser.add_option("-p", "--plugin",
                       action="store",
                       type="string",
                       dest="plugins",
-                      default=None,
+                      default="httpscan",
                       help="Plugin name default is httpscan "
     )
     parser.add_option("-u", "--url",
@@ -24,11 +25,12 @@ def main(args):
                       help="Scan url"
     )
 
-    (options, arg) = parser.parse_args()
+    (options, args) = parser.parse_args(argv)
 
-
+    if options.url:
+        url = Url(options.url)
 
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    main(args)
+    argv = sys.argv[1:]
+    main(argv)

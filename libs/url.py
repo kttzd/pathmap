@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Coyote'
 
+import re
+
 class Url(object):
 
     expr = r"(http[s]?)://([^:^/]+):?([^/]*)/"
@@ -11,7 +13,7 @@ class Url(object):
         self._host = None
         self._port = None
         self._domain = None
-        self.url = url
+        self.url = url if url[-1] == "/" else url + "/"
 
     @property
     def protocol(self):
@@ -29,9 +31,9 @@ class Url(object):
     def domain(self):
         return self._domain
 
-    def 
-    @classmethod
-
-        _host[(_host.find('.')+1):]
-
-
+    def parser(self):
+        m = re.match(self.expr,self._url)
+        self._protocol = m.group(1)
+        self._host = m.group(2)
+        self._ports = m.group(3)
+        self._domain = self._host[(self._host.find('.')+1):]
