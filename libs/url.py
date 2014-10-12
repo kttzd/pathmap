@@ -8,7 +8,7 @@ class Url(object):
 
     expr = r"(http[s]?)://([^:^/]+):?([^/]*)/"
 
-    def init(self, url):
+    def __init__(self, url):
         self._protocol = None
         self._host = None
         self._port = None
